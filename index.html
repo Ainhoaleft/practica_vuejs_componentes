@@ -31,12 +31,8 @@
                      <div class="col-xs-12" v-for="item in col.collection.items" :key="item.id">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
-                                 <dl v-for="data in item.data">
-                                    <dt>{{ data.prompt }}</dt>
-                                    <dd>{{ data.value }}</dd>
-                                </dl>
-                                <a :href=item.href class="btn btn-primary">Ver</a> 
-                            </div>
+                                <item-data v-for="item in item" :item="item"></item-data>
+                            </div>               
                         </div>
                     </div>
                 </div>
@@ -47,11 +43,14 @@
 
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
-
-            <div>
-                <button @click="editar">{{editar}}</button>
-            </div>
-
+           
+            <dl v-for="data in item.data">
+                <dd>{{ data.prompt }}</dd> 
+                <input v-if="data.prompt != description" type="text" v-model="data.value">
+                <textarea v-else v-model="data.value" type="text"></textarea>
+            </dl>
+            <button @click="formClose" class="btn btn-primary">Cerrar</button>
+     
             <!--
                  TODO: Componente edit-form
             -->
@@ -62,8 +61,24 @@
 
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
-            
-             
+            <div class="card" style="width: 18rem;">
+              <div class="card-body" v-show="datos">
+                <dl v-for="data in item.data">
+                <dt>{{ data.prompt }}</dt>
+                <dd>{{ data.value }}</dd>
+            </dl>
+            <a :href=item.href class="btn btn-primary">Ver</a> 
+            <button @click="toggleEditFormVisibility" class="btn btn-secondary">Editar</button>
+            </div>
+            <div class="card-body" v-show="edicion">
+                <dl v-for="data in item.data">
+                    <dd>{{ data.prompt }}</dd> 
+                    <input v-if="data.prompt != description" type="text" v-model="data.value">
+                    <textarea v-else v-model="data.value" type="text"></textarea>
+                </dl>
+                <button @click="formClose" class="btn btn-primary">Cerrar</button>
+            </div>
+         </div>             
             <!--
                  TODO: Componente item-data
             -->
