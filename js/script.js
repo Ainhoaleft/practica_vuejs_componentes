@@ -74,7 +74,7 @@ Vue.component('item-data', {
                 this.datos = false;
                 this.edicion = true;
             },
-            formclose() {
+            formClose() {
                 this.datos = true;
                 this.edicion = false;
             }
@@ -89,7 +89,7 @@ var app = new Vue({
     el: '#app',
     data: {
         col: server_data,
-        items: server_data. collection.items
+        item: server_data. collection.items
     }
 });
 
