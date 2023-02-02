@@ -69,7 +69,7 @@
             <div class="card-body" v-show="edicion">
                 <dl v-for="data in item.data">
                     <dt>{{ data.prompt }}</dt> 
-                    <input v-if="data.prompt != description" type="text" v-model="data.value">
+                    <input v-if="data.prompt != 'Description'" type="text" v-model="data.value">
                     <textarea v-else v-model="data.value" type="text"></textarea>
                 </dl>
                 <button @click="formClose" class="btn btn-primary">Cerrar</button>
